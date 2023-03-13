@@ -4,9 +4,12 @@ import React from "react";
 
 const Search = () => {
   return (
-    <form>
-      <input type="text" />
-    </form>
+    <div className=" container d-sm-flex justify-content-between">
+      <form>
+        <input type="text" />
+      </form>
+      <div>dropdown</div>
+    </div>
   );
 };
 
