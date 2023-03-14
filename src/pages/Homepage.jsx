@@ -9,7 +9,7 @@ const Homepage = ({ data }) => {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className="main-content">
         <Search />
         <Countries data={data} />
       </div>
