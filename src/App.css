@@ -47,8 +47,30 @@ form input {
   border: none;
 }
 
-.select-container select {
-  display: none;
-  /* background-color: red; */
- 
+/* input:focus {
+  outline: 1plx solid var(--text-color);
+} */
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+.select-container {
+  position: relative;
+}
+
+.select-container ul:nth-of-type(1) {
+  background-color: var(--bg-elements-color);
+  height: 50px;
+}
+
+.options {
+  position: absolute;
+  transform: scale(0);
+  transition: 0.4s ease-in-out, transform 0.5s ease-in-out;
+  background-color: var(--bg-elements-color);
+}
+
+.options.active {
+  transform: scale(1);
 }

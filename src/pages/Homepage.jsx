@@ -5,10 +5,10 @@ import Countries from "../components/Countries";
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 
-const Homepage = ({ data }) => {
+const Homepage = ({ data, lightMode, setLightMode }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar lightMode={lightMode} setLightMode={setLightMode} />
       <div className="main-content">
         <Search />
         <Countries data={data} />
