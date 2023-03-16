@@ -9,7 +9,7 @@ const Countries = ({ data }) => {
         const { name, idd, flags, population, region, capital } = eachCountry;
         return (
           <div key={name.common} className=" bg-elements rounded-3">
-            <img className="w-100" src={flags.svg} alt="" />
+            <img className="w-100 rounded-top" src={flags.svg} alt="" />
             <div className="text-start ps-3 pb-5">
               <p className="py-3 fw-bold fs-3 ">{name.common}</p>
               <p className="mb-1">

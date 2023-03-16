@@ -31,13 +31,14 @@
   text-align: center;
   background-color: var(--bg-color);
   color: var(--text-color);
+  min-height: 100vh;
 }
 
 .bg-elements {
   background-color: var(--bg-elements-color);
 }
 
-.main-content {
+.main-content, .main-nav {
   width: 90%;
   margin: 0 auto;
 }
@@ -45,11 +46,9 @@
 form input {
   background-color: var(--bg-elements-color);
   border: none;
+  color: var(--text-color);
+  outline: transparent;
 }
-
-/* input:focus {
-  outline: 1plx solid var(--text-color);
-} */
 
 ul {
   list-style: none;
@@ -62,15 +61,24 @@ ul {
 .select-container ul:nth-of-type(1) {
   background-color: var(--bg-elements-color);
   height: 50px;
+  cursor: pointer;
 }
 
 .options {
   position: absolute;
-  transform: scale(0);
-  transition: 0.4s ease-in-out, transform 0.5s ease-in-out;
+  top: 75%;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: 0.2s ease-in-out;
   background-color: var(--bg-elements-color);
+  cursor: pointer;
 }
 
 .options.active {
-  transform: scale(1);
+  transform: scaleY(1);
+}
+
+.options li:hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

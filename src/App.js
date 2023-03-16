@@ -15,14 +15,6 @@ function App() {
   const [lightMode, setLightMode] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
 
-  // function switchMode() {
-  //   if (lightMode === true) {
-  //     document.body.classList.add("light-mode");
-  //   } else {
-  //     document.body.classList.remove("light-mode");
-  //   }
-  // }
-
   useEffect(() => {
     if (lightMode === true) {
       document.body.classList.add("light-mode");
@@ -39,9 +31,12 @@ function App() {
             path="/"
             element={
               <Homepage
-                data={data}
+                data={data?.filter((datum) =>
+                  datum.region.toLowerCase().trim().includes(selectedRegion)
+                )}
                 lightMode={lightMode}
                 setLightMode={setLightMode}
+                setSelectedRegion={setSelectedRegion}
               />
             }
           />
