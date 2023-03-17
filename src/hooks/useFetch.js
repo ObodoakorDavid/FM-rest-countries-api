@@ -9,13 +9,23 @@ export const useFetch = (url) => {
 
   useEffect(() => {
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something Went Wrong");
+        }
+        // console.log(res);
+        return res.json();
+      })
       .then((json) => {
         setData(json);
-        console.log(json);
+        // console.log(json);
         setLoading(false);
       })
-      .catch((err) => setError(err));
+      .catch((err) => {
+        setLoading(false);
+        setError(err);
+        // console.log(err);
+      });
   }, [url]);
   return { data, error, loading };
 };

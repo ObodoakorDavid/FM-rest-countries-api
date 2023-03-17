@@ -1,8 +1,15 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
+import AllContext from "../context/AllContext";
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
-const Navbar = ({ lightMode, setLightMode }) => {
+const Navbar = () => {
+  const { lightMode, setLightMode } = useContext(AllContext);
+
+  const themeText = lightMode ? "Dark Mode" : "Light Mode";
+  const icon = lightMode ? <MdDarkMode /> : <MdOutlineDarkMode />;
+
   return (
     <div className="bg-elements">
       <div className="main-nav bg-elements d-flex justify-content-between align-items-center py-3">
@@ -14,9 +21,10 @@ const Navbar = ({ lightMode, setLightMode }) => {
           style={{
             cursor: "pointer",
           }}
+          className="d-flex align-items-center gap-1"
         >
-          <img src="" alt="" />
-          <p className="">Dark Mode</p>
+          {icon}
+          <p className="m-0">{themeText}</p>
         </div>
       </div>
     </div>

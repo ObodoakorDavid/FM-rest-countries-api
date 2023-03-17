@@ -1,12 +1,15 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AllContext from "../context/AllContext";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const Search = ({ setSelectedRegion }) => {
+const Search = () => {
+  const { setSelectedRegion, setUserInput } = useContext(AllContext);
+
   const data = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="d-md-flex justify-content-between align-items-sm-center p-3 py-5 py-md-3 px-md-0">
       <form className="w-100">
@@ -15,7 +18,7 @@ const Search = ({ setSelectedRegion }) => {
           placeholder="Search for a country..."
           type="text"
           onChange={(e) => {
-            setSelectedRegion(e.target.value.toLowerCase());
+            setUserInput(e.target.value.toLowerCase());
           }}
         />
       </form>
@@ -45,11 +48,13 @@ const Search = ({ setSelectedRegion }) => {
             {data.map((datum) => {
               return (
                 <li
-                  onClick={() => {
+                  onClick={(e) => {
                     setIsOpen(false);
+                    console.log(e.target.value);
                   }}
                   key={datum}
                   className="p-1 rounded-1"
+                  value={datum}
                 >
                   {datum}
                 </li>
@@ -57,15 +62,6 @@ const Search = ({ setSelectedRegion }) => {
             })}
           </ul>
         )}
-        {/* <select className="w-50 mt-5 d-flex p-3" name="" id="">
-          {data.map((each) => {
-            return (
-              <option key={each} value={each.toLowerCase()}>
-                {each}
-              </option>
-            );
-          })}
-        </select> */}
       </div>
     </div>
   );

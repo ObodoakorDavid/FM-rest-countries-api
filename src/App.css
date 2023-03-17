@@ -38,7 +38,15 @@
   background-color: var(--bg-elements-color);
 }
 
-.main-content, .main-nav {
+.main-text-color {
+  color: var(--text-color);
+}
+.main-text-color:hover {
+  color: var(--text-color);
+}
+
+.main-content,
+.main-nav {
   width: 90%;
   margin: 0 auto;
 }
@@ -81,4 +89,31 @@ ul {
 .options li:hover {
   background-color: var(--bg-color);
   color: var(--text-color);
+}
+
+.countries {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6em;
+}
+.countries img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .countries {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .countries {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  .countries {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

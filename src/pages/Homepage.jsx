@@ -1,18 +1,22 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
+import AllContext from "../context/AllContext";
 import Countries from "../components/Countries";
-import Navbar from "../components/Navbar";
 import Search from "../components/Search";
+import Layout from "../layout/Layout";
 
-const Homepage = ({ data, lightMode, setLightMode, setSelectedRegion }) => {
+const Homepage = () => {
+  const { countries} = useContext(AllContext);
+  // console.log(countries);
   return (
     <div>
-      <Navbar lightMode={lightMode} setLightMode={setLightMode} />
-      <div className="main-content">
-        <Search setSelectedRegion={setSelectedRegion} />
-        <Countries data={data} />
-      </div>
+      <Layout>
+        <div className="main-content">
+          <Search />
+          {countries ? <Countries /> : <p>Loading</p>}
+        </div>
+      </Layout>
     </div>
   );
 };

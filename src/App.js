@@ -6,14 +6,16 @@ import { useFetch } from "./hooks/useFetch";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { useEffect, useState } from "react";
+import { ContextProvider } from "./context/AllContext";
+import CountryLayout from "./layout/CountryLayout";
+import Error404 from "./components/Error404";
 
 function App() {
-  const { data, error, loading } = useFetch(
-    "https://restcountries.com/v3.1/all"
-  );
+  const { data } = useFetch("https://restcountries.com/v3.1/all");
 
   const [lightMode, setLightMode] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
+  const [userInput, setUserInput] = useState("");
 
   useEffect(() => {
     if (lightMode === true) {
@@ -26,21 +28,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Homepage
-                data={data?.filter((datum) =>
-                  datum.region.toLowerCase().trim().includes(selectedRegion)
-                )}
-                lightMode={lightMode}
-                setLightMode={setLightMode}
-                setSelectedRegion={setSelectedRegion}
-              />
-            }
-          />
-        </Routes>
+        <ContextProvider>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="detail/:name" element={<CountryLayout />} />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </ContextProvider>
       </BrowserRouter>
     </div>
   );
