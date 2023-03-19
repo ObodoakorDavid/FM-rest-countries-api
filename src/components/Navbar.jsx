@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-elements">
-      <div className="main-nav bg-elements d-flex justify-content-between align-items-center py-3">
+      <div className="main-nav bg-elements d-flex justify-content-between align-items-center py-5">
         <h1 className=" fs-3 m-0">Where in the World?</h1>
         <div
           onClick={() => {

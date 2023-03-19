@@ -12,7 +12,9 @@ export const ContextProvider = ({ children }) => {
 
   const [lightMode, setLightMode] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
+  const [filterBy, setFilterBy] = useState(null);
   const [userInput, setUserInput] = useState("");
+  const [regionClicked, setRegionClicked] = useState(false);
 
   useEffect(() => {
     if (lightMode === true) {
@@ -22,23 +24,39 @@ export const ContextProvider = ({ children }) => {
     }
   }, [lightMode]);
 
-  function filterCountries() {
-    return countries?.filter((datum) =>
-      datum.name.common
-        .trim()
-        .toLowerCase()
-        .includes(userInput.trim().toLowerCase())
+  function filterCountries(filterCriteria) {
+    let filtered = countries?.filter(
+      (datum) => datum.region.toLowerCase() === selectedRegion.toLowerCase()
     );
+    let tempdata = !regionClicked ? countries : filtered;
+    if (filterCriteria === "userInput") {
+      return tempdata.filter((datum) =>
+        datum.name.common
+          .trim()
+          .toLowerCase()
+          .includes(userInput.trim().toLowerCase())
+      );
+    } else if (filterCriteria === "region") {
+      return tempdata.filter(
+        (datum) => datum.region.toLowerCase() === selectedRegion.toLowerCase()
+      );
+    } else {
+      return countries;
+    }
   }
-  console.log("gg");
 
   const data = {
-    name: "David",
-    countries: filterCountries(),
+    countries: filterCountries(filterBy),
     lightMode,
     setLightMode,
     userInput,
     setUserInput,
+    selectedRegion,
+    setSelectedRegion,
+    filterBy,
+    setFilterBy,
+    regionClicked,
+    setRegionClicked,
   };
   return <AllContext.Provider value={data}>{children}</AllContext.Provider>;
 };

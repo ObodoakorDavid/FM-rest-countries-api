@@ -13,8 +13,7 @@ const CountryLayout = () => {
     error,
     loading,
   } = useFetch(`https://restcountries.com/v3.1/name/${name}`);
-
-  // console.log(error);
+  
   return (
     <Layout>
       {country && <CountryDetail country={country} />}

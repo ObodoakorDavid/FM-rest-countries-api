@@ -13,7 +13,6 @@ export const useFetch = (url) => {
         if (!res.ok) {
           throw new Error("Something Went Wrong");
         }
-        // console.log(res);
         return res.json();
       })
       .then((json) => {
@@ -24,7 +23,6 @@ export const useFetch = (url) => {
       .catch((err) => {
         setLoading(false);
         setError(err);
-        // console.log(err);
       });
   }, [url]);
   return { data, error, loading };
