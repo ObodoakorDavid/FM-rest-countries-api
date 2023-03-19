@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { ContextProvider } from "./context/AllContext";
 import CountryLayout from "./layout/CountryLayout";
-import Error404 from "./components/Error404";
+import Error404 from "./utils/Error404";
 
 function App() {
   return (

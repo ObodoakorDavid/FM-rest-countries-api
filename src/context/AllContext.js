@@ -8,9 +8,13 @@ const AllContext = createContext();
 export default AllContext;
 
 export const ContextProvider = ({ children }) => {
-  const { data: countries } = useFetch("https://restcountries.com/v3.1/all");
+  const { data: countries, loading } = useFetch(
+    "https://restcountries.com/v3.1/all"
+  );
 
-  const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState(
+    JSON.parse(localStorage.getItem("lightMode")) || false
+  );
   const [selectedRegion, setSelectedRegion] = useState("");
   const [filterBy, setFilterBy] = useState(null);
   const [userInput, setUserInput] = useState("");
@@ -22,6 +26,7 @@ export const ContextProvider = ({ children }) => {
     } else {
       document.body.classList.remove("light-mode");
     }
+    localStorage.setItem("lightMode", JSON.stringify(lightMode));
   }, [lightMode]);
 
   function filterCountries(filterCriteria) {
@@ -57,6 +62,7 @@ export const ContextProvider = ({ children }) => {
     setFilterBy,
     regionClicked,
     setRegionClicked,
+    loading,
   };
   return <AllContext.Provider value={data}>{children}</AllContext.Provider>;
 };

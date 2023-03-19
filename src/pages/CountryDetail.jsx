@@ -6,7 +6,7 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 const CountryDetail = ({ country }) => {
   const navigate = useNavigate();
-  const eachCountry = country[0] ? country[0] : null;
+  const eachCountry = country[0];
   const currencyText = eachCountry.currrencies
     ? Object.values(eachCountry.currencies)[0].name
     : "No Currency for this Country";
@@ -15,17 +15,21 @@ const CountryDetail = ({ country }) => {
     (language, index) => <span key={index}>{`${language}, `}</span>
   );
 
-  const borders = eachCountry.borders.map((eachborder, index) => {
-    return (
-      <p key={index} className="bg-elements px-3 py-1 m-0 rounded-1">
-        {eachborder}
-      </p>
-    );
-  });
+  const borders = eachCountry.borders ? (
+    eachCountry.borders.map((eachborder, index) => {
+      return (
+        <p key={index} className="bg-elements px-3 py-1 m-0 rounded-1">
+          {eachborder}
+        </p>
+      );
+    })
+  ) : (
+    <p className="w-100 m-0">No Border for this Country</p>
+  );
   // console.log(languages);
   //   const {} = country[0] ? country[0] : null;
   // console.log(Object.values(eachCountry.currencies)[0].name);
-  // console.log(eachCountry.currrencies);
+  console.log(eachCountry.borders);
 
   return (
     <div className="text-start p-4 p-md-5 py-5">

@@ -8,22 +8,24 @@ export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Something Went Wrong");
-        }
-        return res.json();
-      })
-      .then((json) => {
-        setData(json);
-        // console.log(json);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(err);
-      });
+    setTimeout(() => {
+      fetch(url)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something Went Wrong");
+          }
+          return res.json();
+        })
+        .then((json) => {
+          setData(json);
+          // console.log(json);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          setError(err);
+        });
+    }, 1000);
   }, [url]);
   return { data, error, loading };
 };
